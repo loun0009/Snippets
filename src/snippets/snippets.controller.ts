@@ -3,7 +3,10 @@ import { snippetsRepository } from "./snippets.repository";
 
 class SnippetsController {
     public async list(req: Request, res: Response, next: NextFunction): Promise<any> {
-        console.log(snippetsRepository.findAll());
+        const snippets = await snippetsRepository.findAll();
+        console.log(snippets);
+
+        res.render('snippets/snippets_list', { snippets });
     }
 }
 

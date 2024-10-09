@@ -1,0 +1,12 @@
+<%- include('../partials/header.ejs') %>
+
+    <% for(let i = 0; i < snippets.length; i++) {%>
+        <div class="card">
+            <h3><%= snippets[i].title %>
+            <pre><%= snippets[i].code %></pre>
+            <p><%= snippets[i].description %></p>
+            <p><%= snippets[i].creationDate %></p>
+        </div>
+    <% } %>
+
+<%- include('../partials/footer.ejs') %>

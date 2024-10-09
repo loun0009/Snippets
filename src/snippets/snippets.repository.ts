@@ -1,6 +1,11 @@
+import prisma from "../services/prisma";
+
 class SnippetsRepository {
-    public findAll(): any {
-        throw new Error("Ceci est un message d'erreur");
+    public async findAll(): Promise<any> {
+        const snippets = await prisma.snippet.findMany({
+            orderBy: { id: 'desc' }
+        });
+        return snippets;
     }
 }
 

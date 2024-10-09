@@ -1,5 +1,11 @@
+body {
+    background-color: gray;
+}
+
 pre {
     border: solid 1px black;
+    font-size: 1rem;
+    margin-block: 1rem;
 }
 
 a {
@@ -20,4 +26,26 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+nav {
+    background-color: black;
+    color: white;
+    padding-block: 1rem;
+    padding-inline: 1rem;
+    margin-bottom: 5rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.card {
+    padding: 1rem;
+}
+
+p {
+    font-size: 1rem;
 }

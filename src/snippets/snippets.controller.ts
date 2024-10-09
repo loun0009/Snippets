@@ -2,7 +2,7 @@ import { NextFunction,Request,Response } from "express";
 import { snippetsRepository } from "./snippets.repository";
 
 class SnippetsController {
-    public list(req: Request, res: Response, next: NextFunction): void {
+    public async list(req: Request, res: Response, next: NextFunction): Promise<any> {
         console.log(snippetsRepository.findAll());
     }
 }

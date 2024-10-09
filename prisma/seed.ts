@@ -3,6 +3,23 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
     
 async function main() {
+
+    await prisma.language.create({
+        data: {
+            name: "C",
+            htmlClass: "language-c",
+            logo: "devicon-c-plain",
+        },
+    });
+
+    await prisma.language.create({
+        data: {
+            name: "HTML",
+            htmlClass: "language-html",
+            logo: "devicon-html5-plain",
+        },
+    });
+
     await prisma.snippet.create({
         data: {
             title: 'Hello World',
@@ -13,7 +30,10 @@ async function main() {
 }`,
             description: 'Code original publié dans "The C Programming Language" de Brian Kernighan et Dennis Ritchie.',
             creationDate: new Date(2023, 4, 8, 9, 12, 36),
-        }
+            Language: {
+                connect: { id: 1 }
+            },
+        },
     });
 
     await prisma.snippet.create({
@@ -21,8 +41,11 @@ async function main() {
             title: 'Il faut protéger ses chaînes de caractères',
             code: '<script>window.alert("Injection !")</script>',
             creationDate: new Date(2023, 3, 4, 5, 6, 7),
-            description: 'Dans le template EJS, observez le comportement de la page en utilisant successivement les balises <%- et <%=pour injecter les données.', 
-        }
+            description: 'Dans le template EJS, observez le comportement de la page en utilisant successivement les balises <%- et <%=pour injecter les données.',
+            Language: {
+                connect: { id: 2 }
+            },
+        },
     });
 
     await prisma.snippet.create({
@@ -31,8 +54,13 @@ async function main() {
             code: '<a href="url" download>Télécharger</a>',
             creationDate: new Date(2023, 3, 4, 5, 6, 7),
             description: "L'attribut download permet de forcer le téléchargement du fichier, même si le navigateur.",
-        }
+            Language: {
+                connect: { id: 2 }
+            },
+        },
     });
+
+    
 }
 
 main().catch(e => {

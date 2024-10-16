@@ -2,7 +2,10 @@
 
     <% for(let i = 0; i < snippets.length; i++) {%>
         <div class="card">
-            <h3><%= snippets[i].title %>
+            <h3>
+                <i class="<%= snippets[i].Language.logo %> colored"></i>
+                <%= snippets[i].title %>
+            </h3>
             <pre><%= snippets[i].code %></pre>
             <p><%= snippets[i].description %></p>
             <p><%= snippets[i].creationDate %></p>

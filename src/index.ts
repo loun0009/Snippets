@@ -3,6 +3,7 @@ import session from 'express-session';
 import express, { NextFunction,Request,Response} from 'express';
 import snippetsRouter from './snippets/snippets.router';
 import languagesRouter from './languages/languages.router';
+import authRouter from './auth/auth.router';
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(express.static('public'));
 
 app.use('/', snippetsRouter);
 app.use('/languages', languagesRouter);
+app.use('/auth', authRouter);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     console.log(`ERREUR : ${err.message}`);

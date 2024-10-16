@@ -1,10 +1,9 @@
 import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
-
 import bcrypt from 'bcrypt';
-import { connect } from 'http2';
+
 const saltRounds = 10;
 const salt = bcrypt.genSaltSync(saltRounds);
+const prisma = new PrismaClient();
 
 async function main() {
     await prisma.user.create({

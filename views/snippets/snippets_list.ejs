@@ -6,10 +6,15 @@
                 <i class="<%= snippets[i].Language.logo %> colored"></i>
                 <%= snippets[i].title %>
             </h3>
-            <pre><%= snippets[i].code %></pre>
+            <pre>
+                <code class="<%= snippets[i].Language.htmlClass %>">
+                    <%= snippets[i].code %>
+                </code>
+            </pre>
             <p><%= snippets[i].description %></p>
             <p><%= snippets[i].creationDate %></p>
         </div>
     <% } %>
+    <script src="/js/prism.js"></script>
 
 <%- include('../partials/footer.ejs') %>

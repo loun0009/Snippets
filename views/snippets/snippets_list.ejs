@@ -1,20 +1,20 @@
 <%- include('../partials/header.ejs') %>
 
-    <% for(let i = 0; i < snippets.length; i++) {%>
+    <% snippets.forEach(snippet => { %>
         <div class="card">
             <h3>
-                <i class="<%= snippets[i].Language.logo %> colored"></i>
-                <%= snippets[i].title %>
+                <i class="<%= snippet.Language.logo %> colored"></i>
+                <%= snippet.title %>
             </h3>
             <pre>
-                <code class="<%= snippets[i].Language.htmlClass %>">
-                    <%= snippets[i].code %>
+                <code class="<%= snippet.Language.htmlClass %>">
+                    <%= snippet.code %>
                 </code>
             </pre>
-            <p><%= snippets[i].description %></p>
-            <p><%= snippets[i].creationDate %></p>
+            <p><%= snippet.description %></p>
+            <p><%= snippet.creationDate %></p>
         </div>
-    <% } %>
+    <% }); %>
     <script src="/js/prism.js"></script>
 
 <%- include('../partials/footer.ejs') %>

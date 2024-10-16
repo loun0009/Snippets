@@ -1,8 +1,26 @@
 import { PrismaClient } from '@prisma/client';
-    
 const prisma = new PrismaClient();
-    
+
+import bcrypt from 'bcrypt';
+import { connect } from 'http2';
+const saltRounds = 10;
+const salt = bcrypt.genSaltSync(saltRounds);
+
 async function main() {
+    await prisma.user.create({
+        data: {
+            name: 'loun0009',
+            hashedPassword: bcrypt.hashSync('azerty', salt),
+        }
+    })
+
+    await prisma.user.create({
+        data: {
+            name: 'perr0112',
+            hashedPassword: bcrypt.hashSync('qsdfgh', salt),
+        }
+    })
+
 
     await prisma.language.create({
         data: {
@@ -24,15 +42,18 @@ async function main() {
         data: {
             title: 'Hello World',
             code:
-`main()
-{
-    printf("hello, world\\n");
-}`,
+                `main()
+                {
+                    printf("hello, world\\n");
+                }`,
             description: 'Code original publié dans "The C Programming Language" de Brian Kernighan et Dennis Ritchie.',
             creationDate: new Date(2023, 4, 8, 9, 12, 36),
             Language: {
                 connect: { id: 1 }
             },
+            author: {
+                connect: {name: 'loun0009'}
+            }
         },
     });
 
@@ -45,6 +66,9 @@ async function main() {
             Language: {
                 connect: { id: 2 }
             },
+            author: {
+                connect: {name: 'loun0009'}
+            }
         },
     });
 
@@ -57,6 +81,9 @@ async function main() {
             Language: {
                 connect: { id: 2 }
             },
+            author: {
+                connect: {name: 'perr0112'}
+            }
         },
     });
 

@@ -13,4 +13,8 @@ authRouter.post('/login',
     expressAsyncHandler(authController.login)
 )
 
+authRouter.get('/logout',
+    expressAsyncHandler(authController.logout)
+)
+
 export default authRouter;

@@ -26,6 +26,12 @@ class AuthController {
             });
         }
     }
+
+    public async logout(req: Request, res: Response, next: NextFunction): Promise<any> {
+        req.session.destroy((err) => {
+            res.redirect('/');
+        });
+    }
 }
 
 export const authController = new AuthController();

@@ -4,6 +4,7 @@ import express, { NextFunction,Request,Response} from 'express';
 import snippetsRouter from './snippets/snippets.router';
 import languagesRouter from './languages/languages.router';
 import authRouter from './auth/auth.router';
+import { sessionUser } from './auth/auth.middleware';
 
 const app = express();
 
@@ -17,6 +18,8 @@ const port = process.env.port;
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+
+app.use(sessionUser);
 
 app.use('/', snippetsRouter);
 app.use('/languages', languagesRouter);

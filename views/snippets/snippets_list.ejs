@@ -1,6 +1,11 @@
 <%- include('../partials/header.ejs', { title: 'Snippets' }) %>
 
     <% snippets.forEach(snippet => { %>
+        <% 
+            const creationDate = new Date(snippet.creationDate);
+            const formattedDate = creationDate.toLocaleDateString('fr-FR');
+            const formattedTime = creationDate.toLocaleTimeString('fr-FR');
+        %>
         <div class="card">
             <h3>
                 <i class="<%= snippet.Language.logo %> colored"></i>
@@ -12,7 +17,10 @@
                 </code>
             </pre>
             <p><%= snippet.description %></p>
-            <p><%= snippet.creationDate %></p>
+
+            <span class="author">Rédigé par <%= snippet.author.name %> le
+                <%= formattedDate %> à <%= formattedTime %>
+            </span>
         </div>
     <% }); %>
     <script src="/js/prism.js"></script>

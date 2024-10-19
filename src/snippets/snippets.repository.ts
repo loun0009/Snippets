@@ -7,6 +7,7 @@ class SnippetsRepository {
             where: languageId ? { languageId } : {},
             include : {
                 Language: true,
+                author: true,
             },
         });
         return snippets;

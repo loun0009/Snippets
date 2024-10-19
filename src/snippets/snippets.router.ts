@@ -3,6 +3,7 @@ import { snippetsController } from './snippets.controller';
 import expressAsyncHandler from 'express-async-handler';
 import { query } from 'express-validator';
 import { languageValidator } from '../languages/languages.middlewares';
+
 const snippetsRouter = express.Router();
 
 snippetsRouter.get('/',

@@ -7,6 +7,7 @@ import authRouter from './auth/auth.router';
 import { sessionUser } from './auth/auth.middleware';
 
 const app = express();
+const port = process.env.port;
 
 app.use(session({
     secret: process.env.session_secret as string,
@@ -14,7 +15,6 @@ app.use(session({
     resave: false
 }));
 
-const port = process.env.port;
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -33,5 +33,3 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 app.listen(port, () => {
     console.log(`Serveur local démarré : http://localhost:${port}`);
 });
-
-

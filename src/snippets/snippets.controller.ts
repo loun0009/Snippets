@@ -11,8 +11,6 @@ class SnippetsController {
             return res.render('error');
         }
 
-        console.log('session user ---', req.session.user);
-
         res.render('snippets/snippets_list', { snippets });
     }
 }

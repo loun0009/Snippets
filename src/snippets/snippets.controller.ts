@@ -84,6 +84,18 @@ class SnippetsController {
 
         return res.redirect('/');
     }
+
+    public async deleteSnippet(req: Request, res: Response, next: NextFunction): Promise<any> {
+        let snippetId = parseInt(req.params.id, 10);
+
+        let snippetDeleted = await prisma.snippet.delete({
+            where: {
+                id: snippetId
+            }
+        });
+
+        return res.redirect('/');
+    }
 }
 
 export const snippetsController = new SnippetsController();

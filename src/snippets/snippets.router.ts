@@ -46,4 +46,10 @@ snippetsRouter.post('/edit/:id',
     expressAsyncHandler(snippetsController.editSnippet)
 )
 
+snippetsRouter.get('/delete/:id',
+    isConnected,
+    isAuthorConnected,
+    expressAsyncHandler(snippetsController.deleteSnippet)
+)
+
 export default snippetsRouter;

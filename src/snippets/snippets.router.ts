@@ -3,7 +3,7 @@ import { snippetsController } from './snippets.controller';
 import expressAsyncHandler from 'express-async-handler';
 import { query, body, param } from 'express-validator';
 import { languageValidator } from '../languages/languages.middlewares';
-import { isConnected } from '../auth/auth.middleware';
+import { isAuthorConnected, isConnected } from '../auth/auth.middleware';
 
 const snippetsRouter = express.Router();
 
@@ -31,12 +31,12 @@ snippetsRouter.post('/new',
 );
 
 snippetsRouter.get('/edit/:id',
-    isConnected,
+    isAuthorConnected,
     expressAsyncHandler(snippetsController.editForm)
 )
 
 snippetsRouter.post('/edit/:id',
-    isConnected,
+    isAuthorConnected,
     urlencoded({ extended: true }),
     param('id').isNumeric().withMessage("ID invalide"),
     body('title').isLength({ min: 5, max: 50 }),

@@ -45,6 +45,45 @@ class SnippetsController {
 
         return res.redirect('/');
     }
+
+    public async editForm(req: Request, res: Response, next: NextFunction): Promise<any> {
+        let snippetId = parseInt(req.params.id, 10);
+
+        const languages = await languagesRepository.findAll();
+        const snippet = await prisma.snippet.findUnique({
+            where: {
+                id: snippetId
+            },
+        });
+    
+        if (!snippet) {
+            return res.render('error', { message: "Snippet introuvable." });
+        }
+    
+        res.render('snippets/snippet_form', { languages, snippet });
+    }
+
+    public async editSnippet(req: Request, res: Response, next: NextFunction): Promise<any> {
+        const result = validationResult(req);
+
+        if (!result.isEmpty()) {
+            return res.render('error');
+        }
+
+        let snippetUpdated = await prisma.snippet.update({
+            where: {
+                id: parseInt(req.params.id, 10)
+            },
+            data: {
+                title: req.body.title,
+                code: req.body.code,
+                description: req.body.description,
+                languageId: parseInt(req.body.lang, 10),
+            }
+        });
+
+        return res.redirect('/');
+    }
 }
 
 export const snippetsController = new SnippetsController();

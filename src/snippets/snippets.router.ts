@@ -1,7 +1,7 @@
 import express, { urlencoded } from 'express';
 import { snippetsController } from './snippets.controller';
 import expressAsyncHandler from 'express-async-handler';
-import { query, body } from 'express-validator';
+import { query, body, param } from 'express-validator';
 import { languageValidator } from '../languages/languages.middlewares';
 import { isConnected } from '../auth/auth.middleware';
 
@@ -29,5 +29,21 @@ snippetsRouter.post('/new',
     body('description').isLength({ max: 1000 }),
     expressAsyncHandler(snippetsController.newSnippet)
 );
+
+snippetsRouter.get('/edit/:id',
+    isConnected,
+    expressAsyncHandler(snippetsController.editForm)
+)
+
+snippetsRouter.post('/edit/:id',
+    isConnected,
+    urlencoded({ extended: true }),
+    param('id').isNumeric().withMessage("ID invalide"),
+    body('title').isLength({ min: 5, max: 50 }),
+    body('lang').isNumeric(),
+    body('code').isLength({ min: 1, max: 1000 }),
+    body('description').isLength({ max: 1000 }),
+    expressAsyncHandler(snippetsController.editSnippet)
+)
 
 export default snippetsRouter;

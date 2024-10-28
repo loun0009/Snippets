@@ -12,7 +12,10 @@
         %>
         <div class="card">
             <% if (typeof user !== "undefined" && user.id === snippet.author.id) { %>
-                <a class="edit-link" href="/edit/<%= snippet.id %>">Modifier le snippet</a>
+                <div class="card__author-links">
+                    <a class="edit-link" href="/edit/<%= snippet.id %>">Modifier le snippet</a>
+                    <a class="edit-link" href="/delete/<%= snippet.id %>">Supprimer le snippet</a>
+                </div>
                 <hr />
             <% } %>
             <h3>

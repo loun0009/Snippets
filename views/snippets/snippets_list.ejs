@@ -11,7 +11,7 @@
             const formattedTime = creationDate.toLocaleTimeString('fr-FR');
         %>
         <div class="card">
-            <% if (user.id === snippet.author.id) { %>
+            <% if (typeof user !== "undefined" && user.id === snippet.author.id) { %>
                 <a class="edit-link" href="/edit/<%= snippet.id %>">Modifier le snippet</a>
                 <hr />
             <% } %>

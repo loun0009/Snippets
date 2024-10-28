@@ -49,7 +49,12 @@ pre {
     margin-block: 1rem;
 }
 
+.edit-link {
+    font-size: .85rem;
+}
+
 a {
+    width: max-content;
     font-size: 1rem;
     margin: 0;
     color: black;
@@ -89,6 +94,7 @@ nav {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    padding-bottom: 2rem;
 }
 
 .card {

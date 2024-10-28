@@ -3,6 +3,7 @@ import { snippetsController } from './snippets.controller';
 import expressAsyncHandler from 'express-async-handler';
 import { query, body } from 'express-validator';
 import { languageValidator } from '../languages/languages.middlewares';
+import { isConnected } from '../auth/auth.middleware';
 
 const snippetsRouter = express.Router();
 
@@ -15,10 +16,12 @@ snippetsRouter.get('/',
 );
 
 snippetsRouter.get('/new',
+    isConnected,
     expressAsyncHandler(snippetsController.newForm)
 )
 
 snippetsRouter.post('/new',
+    isConnected,
     urlencoded({ extended: true }),
     body('title').isLength({ min: 5, max: 50 }),
     body('lang').isNumeric(),

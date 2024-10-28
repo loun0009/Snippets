@@ -4,3 +4,11 @@ export function sessionUser(req: Request, res: Response, next: NextFunction): vo
     res.locals.user = req.session.user;
     next();
 }
+
+export function isConnected(req: Request, res: Response, next: NextFunction): void {
+    const currentUser = req.session.user;
+    if (!currentUser) {
+        return res.redirect('/auth/login');
+    }
+    next();
+}

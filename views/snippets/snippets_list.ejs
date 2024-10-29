@@ -1,5 +1,9 @@
 <%- include('../partials/header.ejs', { title: 'Snippets' }) %>
 
+    <div class="float">
+        <a href="/new">Création d'un nouveau Snippet</a>
+    </div>
+
     <% snippets.forEach(snippet => { %>
         <% 
             const creationDate = new Date(snippet.creationDate);
@@ -7,6 +11,13 @@
             const formattedTime = creationDate.toLocaleTimeString('fr-FR');
         %>
         <div class="card">
+            <% if (typeof user !== "undefined" && user.id === snippet.author.id) { %>
+                <div class="card__author-links">
+                    <a class="edit-link" href="/edit/<%= snippet.id %>">Modifier le snippet</a>
+                    <a class="edit-link" href="/delete/<%= snippet.id %>">Supprimer le snippet</a>
+                </div>
+                <hr />
+            <% } %>
             <h3>
                 <i class="<%= snippet.Language.logo %> colored"></i>
                 <%= snippet.title %>

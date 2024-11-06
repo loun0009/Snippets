@@ -32,6 +32,7 @@ app.use('/admin',
     adminRouter
 );
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     console.log(`ERREUR : ${err.message}`);
     res.render('error', { err });

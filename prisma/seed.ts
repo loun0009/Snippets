@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Role } from '@prisma/client';
 import bcrypt from 'bcrypt';
 
 const saltRounds = 10;
@@ -10,6 +10,7 @@ async function main() {
         data: {
             name: 'loun0009',
             hashedPassword: bcrypt.hashSync('azerty', salt),
+            role: Role.ADMIN
         }
     })
 
@@ -17,6 +18,7 @@ async function main() {
         data: {
             name: 'perr0112',
             hashedPassword: bcrypt.hashSync('qsdfgh', salt),
+            role: Role.USER
         }
     })
 

@@ -39,3 +39,16 @@ export async function isAuthorConnected(req: Request, res: Response, next: NextF
 
     next();
 }
+
+export function isAdmin(req: Request, res: Response, next: NextFunction): void {
+    const currentUser = req.session.user;
+    console.log(currentUser?.role);
+
+    if (currentUser?.role !== "ADMIN") {
+        return res.render('error',
+            { message: "Vous n'êtes pas connecté en tant qu'administrateur." }
+        );
+    }
+
+    next();
+}

@@ -1,10 +1,13 @@
 import 'dotenv/config';
 import session from 'express-session';
 import express, { NextFunction,Request,Response} from 'express';
+
 import snippetsRouter from './snippets/snippets.router';
 import languagesRouter from './languages/languages.router';
 import authRouter from './auth/auth.router';
-import { sessionUser } from './auth/auth.middleware';
+import adminRouter from './admin/admin.router';
+
+import { isAdmin, sessionUser } from './auth/auth.middleware';
 
 const app = express();
 const port = process.env.port;
@@ -24,6 +27,10 @@ app.use(sessionUser);
 app.use('/', snippetsRouter);
 app.use('/languages', languagesRouter);
 app.use('/auth', authRouter);
+app.use('/admin',
+    isAdmin,
+    adminRouter
+);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     console.log(`ERREUR : ${err.message}`);

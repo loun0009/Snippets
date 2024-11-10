@@ -1,0 +1,33 @@
+<%- include('../partials/header.ejs', { title: 'Administration - utilisateurs' }) %>
+
+<div class="float">
+    <a href="/admin/user/new">Création d'un nouvel utilisateur</a>
+</div>
+
+<% users.forEach(u => { %>
+    <div class="card">
+        <p>
+            Utilisateur:
+            <%= u.name %>
+            <br />
+            <span class="author">
+                <%= user.id === u.id ? 'Votre compte' : '' %>
+            </span>
+        </p>
+        <p>
+            Rôle:
+            <span class="badge <%= u.role === 'ADMIN' ? "bg-primary" : "bg-secondary" %>">
+                <%= u.role %>
+            </span>
+        </p>
+
+        <hr />
+
+        <div class="card__author-links">
+            <a class="edit-link" href="/admin/users/<%= u.id %>">Modifier l'utilisateur</a>
+            <a class="edit-link" href="/admin/users/<%= u.id %>">Supprimer l'utilisateur</a>
+        </div>
+    </div>
+<% }) %>
+
+<%- include('../partials/footer.ejs') %>

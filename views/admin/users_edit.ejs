@@ -1,0 +1,6 @@
+<%- include('../partials/header.ejs', { title: 'Administration' }) %>
+
+<h3>Modifier l'utilisateur <%= u.name %></h3>
+<%- include('./users_form.ejs', { obj: u, list: roles }) %>
+
+<%- include('../partials/footer.ejs') %>

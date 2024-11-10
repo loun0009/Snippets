@@ -1,0 +1,6 @@
+<%- include('../partials/header.ejs', { title: 'Administration' }) %>
+
+<h3>Modifier le langage <%= language.name %></h3>
+<%- include('./languages_form.ejs', { obj: language }) %>
+
+<%- include('../partials/footer.ejs') %>

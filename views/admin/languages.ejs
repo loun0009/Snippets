@@ -1,0 +1,26 @@
+<%- include('../partials/header.ejs', { title: 'Administration - utilisateurs' }) %>
+
+<div class="float">
+    <a href="/admin/language/new">Création d'un nouveau langage</a>
+</div>
+
+<% languages.forEach(language => { %>
+    <div class="card languages">
+        <h3>
+            <i class="<%= language.logo %> colored"></i>
+            <%= language.name %>
+        </h3>
+        <div>
+            <%= language._count.snippets %> snippets
+        </div>
+
+        <hr />
+
+        <div class="card__author-links">
+            <a class="edit-link" href="/admin/languages/<%= language.id %>">Modifier le langage</a>
+            <a class="edit-link" href="/admin/language/delete/<%= language.id %>">Supprimer le langage</a>
+        </div>
+    </div>
+<% }); %>
+
+<%- include('../partials/footer.ejs') %>

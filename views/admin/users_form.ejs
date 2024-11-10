@@ -1,0 +1,41 @@
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Nom d'utilisateur</label>
+        <input
+            type="text"
+            class="form-control"
+            name="name" id="name"
+            placeholder="Saisir un nom d'utilisateur"
+            value="<%= typeof obj !== 'undefined' && obj ? obj.name : '' %>"
+        />
+    </div>
+
+    <div class="form-group">
+        <label for="role">Rôle</label>
+        <select name="role" id="role" class="form-control">
+            <option>Choisir le rôle de l'utilisateur</option>
+            <% list.forEach(role => { %>
+                <option
+                    value="<%= role %>"
+                    <%= typeof obj !== 'undefined' && obj ? role === obj.role ? 'selected' : '' : '' %>
+                >
+                    <%= role %>
+                </option>
+            <% }) %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input
+            type="password"
+            class="form-control"
+            name="password" id="password"
+            placeholder="Saisir un mot de passe"
+        />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        <%= typeof obj !== 'undefined' && obj ? "Modifier" : "Créer" %>
+    </button>
+</form>

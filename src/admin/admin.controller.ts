@@ -83,6 +83,18 @@ class AdminController {
         return res.redirect('/admin/users');
     }
 
+    public async deleteUser(req: Request, res: Response, next: NextFunction): Promise<void> {
+        const userId = parseInt(req.params.id, 10);
+
+        await prisma.user.delete({
+            where: {
+                id: userId
+            }
+        });
+
+        return res.redirect('/');
+    }
+
 }
 
 export const adminController = new AdminController();

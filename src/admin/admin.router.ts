@@ -34,4 +34,8 @@ adminRouter.post('/user/new',
     expressAsyncHandler(adminController.newUser)
 )
 
+adminRouter.get('/user/delete/:id',
+    expressAsyncHandler(adminController.deleteUser)
+)
+
 export default adminRouter;

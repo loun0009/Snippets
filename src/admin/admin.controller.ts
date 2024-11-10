@@ -7,6 +7,7 @@ import { validationResult } from "express-validator";
 import prisma from "../services/prisma";
 import { Role } from "@prisma/client";
 import bcrypt from 'bcrypt';
+import { languagesRepository } from "../languages/languages.repository";
 
 const roles = [Role.ADMIN, Role.USER];
 
@@ -93,6 +94,84 @@ class AdminController {
         });
 
         return res.redirect('/');
+    }
+
+    public async showLanguages(req: Request, res: Response, next: NextFunction): Promise<void> {
+        const languages = await languagesRepository.findAll();
+
+        res.render('admin/languages', { languages });
+    }
+
+    public async showLanguage(req: Request, res: Response, next: NextFunction): Promise<void> {
+        const result = validationResult(req);
+
+        if (!result.isEmpty()) {
+            return res.render('error');
+        }
+
+        const languageId = parseInt(req.params.id, 10);
+        const language = await prisma.language.findUnique({
+            where: {
+                id: languageId
+            }
+        })
+
+        res.render('admin/languages_edit', { language });
+    }
+
+    public async editLanguage(req: Request, res: Response, next: NextFunction): Promise<void> {
+        const result = validationResult(req);
+
+        if (!result.isEmpty()) {
+            return res.render('error');
+        }
+
+        await prisma.language.update({
+            where: {
+                id: parseInt(req.params.id, 10)
+            },
+            data: {
+                name: req.body.name,
+                logo: req.body.logo,
+                htmlClass: req.body.htmlClass
+            }
+        });
+
+        return res.redirect('/admin/languages');
+    }
+
+    public newLanguageForm(req: Request, res: Response, next: NextFunction): void {
+        return res.render('admin/language_new');
+    }
+
+    public async newLanguage(req: Request, res: Response, next: NextFunction): Promise<void> {
+        const result = validationResult(req);
+
+        if (!result.isEmpty()) {
+            return res.render('error');
+        }
+
+        await prisma.language.create({
+            data: {
+                name: req.body.name,
+                logo: req.body.logo,
+                htmlClass: req.body.htmlClass
+            }
+        });
+
+        return res.redirect('/admin/languages');
+    }
+
+    public async deleteLanguage(req: Request, res: Response, next: NextFunction): Promise<void> {
+        const languageId = parseInt(req.params.id, 10);
+
+        await prisma.language.delete({
+            where: {
+                id: languageId
+            }
+        });
+
+        return res.redirect('/admin/languages');
     }
 
 }

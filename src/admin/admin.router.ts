@@ -38,4 +38,36 @@ adminRouter.get('/user/delete/:id',
     expressAsyncHandler(adminController.deleteUser)
 )
 
+adminRouter.get('/languages',
+    expressAsyncHandler(adminController.showLanguages)
+)
+
+adminRouter.get('/languages/:id',
+    expressAsyncHandler(adminController.showLanguage)
+)
+
+adminRouter.post('/languages/:id',
+    urlencoded({ extended: true }),
+    body('name').notEmpty(),
+    body('logo').notEmpty(),
+    body('htmlClass').notEmpty(),
+    expressAsyncHandler(adminController.editLanguage)
+)
+
+adminRouter.get('/language/new',
+    expressAsyncHandler(adminController.newLanguageForm)
+)
+
+adminRouter.post('/language/new',
+    urlencoded({ extended: true }),
+    body('name').notEmpty(),
+    body('logo').notEmpty(),
+    body('htmlClass').notEmpty(),
+    expressAsyncHandler(adminController.newLanguage)
+)
+
+adminRouter.get('/language/delete/:id',
+    expressAsyncHandler(adminController.deleteLanguage)
+)
+
 export default adminRouter;

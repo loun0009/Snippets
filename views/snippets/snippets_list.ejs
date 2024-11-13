@@ -19,17 +19,21 @@
                 <hr />
             <% } %>
             <h3>
-                <i class="<%= snippet.Language.logo %> colored"></i>
+                <% if (snippet.Language) { %>
+                    <i class="<%= snippet.Language.logo %> colored"></i>
+                <% } %>
                 <%= snippet.title %>
             </h3>
             <pre>
-                <code class="<%= snippet.Language.htmlClass %>">
+                <code class="<%= snippet.Language ? snippet.Language.htmlClass : '' %>">
                     <%= snippet.code %>
                 </code>
             </pre>
             <p><%= snippet.description %></p>
-
-            <span class="author">Rédigé par <%= snippet.author.name %> le
+            
+            <span class="author">
+                Rédigé par
+                <%= snippet.author ? snippet.author.name : 'Auteur inconnu' %> le 
                 <%= formattedDate %> à <%= formattedTime %>
             </span>
         </div>

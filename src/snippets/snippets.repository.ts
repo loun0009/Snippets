@@ -1,7 +1,8 @@
+import { Snippet } from "@prisma/client";
 import prisma from "../services/prisma";
 
 class SnippetsRepository {
-    public async findAll(languageId:number|null): Promise<any> {
+    public async findAll(languageId:number|null): Promise<Snippet[]> {
         const snippets = await prisma.snippet.findMany({
             orderBy: { id: 'desc' },
             where: languageId ? { languageId } : {},

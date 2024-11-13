@@ -1,6 +1,9 @@
 <%- include('../partials/header.ejs', { title: "Création d'un Snippet" }) %>
 
-    <h3>Ajouter votre snippet</h3>
+    <h3>
+        <%= typeof snippet !== 'undefined' && snippet ? "Modifier" : "Ajouter" %>
+        votre snippet
+    </h3>
 
     <form method="POST">
         <div class="form-group">
@@ -35,7 +38,9 @@
                 <%= typeof snippet !== 'undefined' && snippet ? snippet.description : '' %>
             </textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Créer</button>
+        <button type="submit" class="btn btn-primary">
+            <%= typeof snippet !== 'undefined' && snippet ? "Modifier" : "Ajouter" %>
+        </button>
     </form>
 
 <%- include('../partials/footer.ejs') %>

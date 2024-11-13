@@ -1,0 +1,20 @@
+<%- include('../partials/header.ejs', { title: 'Administration' }) %>
+
+<h3>Bienvenue sur l'espace administration <%= user.name %>.</h3>
+
+<div class="admin-container">
+    <div class="admin__card card">
+        <a href="/admin/users">
+            Accéder à la liste des utilisateurs
+        </a>
+        <span>- Actions possibles : création, modification et suppression d'un utilisateur.</span>
+    </div>
+    <div class="admin__card card">
+        <a href="/admin/languages">
+            Accéder à la liste des langages
+        </a>
+        <span>- Actions possibles : création, modification et suppression d'un langage.</span>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') %>

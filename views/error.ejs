@@ -1,3 +1,9 @@
-<p><%= typeof message !== 'undefined' ? message : "Erreur" %></p>
+<%- include('./partials/header.ejs', { title: 'Erreur' }) %>
 
-<a href="/">Retour à l'accueil</a>
+<div class="container-error">
+    <h3><%= typeof message !== 'undefined' ? message : "Erreur" %></h3>
+
+    <a href="/">Retour à l'accueil</a>
+</div>
+
+<%- include('./partials/footer.ejs') %>

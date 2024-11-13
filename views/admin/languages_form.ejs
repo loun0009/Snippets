@@ -1,0 +1,38 @@
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Nom du langage</label>
+        <input
+            type="text"
+            class="form-control"
+            name="name" id="name"
+            placeholder="Saisir le nom du langage"
+            value="<%= typeof obj !== 'undefined' && obj ? obj.name : '' %>"
+        />
+    </div>
+
+    <div class="form-group">
+        <label for="logo">Logo du langage</label>
+        <input
+            type="text"
+            class="form-control"
+            name="logo" id="logo"
+            placeholder="Saisir le logo du langage"
+            value="<%= typeof obj !== 'undefined' && obj ? obj.logo : '' %>"
+        />
+    </div>
+
+    <div class="form-group">
+        <label for="htmlClass">Classe HTML du langage</label>
+        <input
+            type="text"
+            class="form-control"
+            name="htmlClass" id="htmlClass"
+            placeholder="Saisir la classe HTML du langage"
+            value="<%= typeof obj !== 'undefined' && obj ? obj.htmlClass : '' %>"
+        />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        <%= typeof obj !== 'undefined' && obj ? "Modifier" : "Créer" %>
+    </button>
+</form>

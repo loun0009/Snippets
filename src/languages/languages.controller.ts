@@ -1,8 +1,10 @@
+
 import { NextFunction,Request,Response } from "express";
 import { languagesRepository } from "./languages.repository";
 
 class LanguagesController {
-    public async list(req: Request, res: Response, next: NextFunction): Promise<any> {
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    public async list(_req: Request, res: Response, _next: NextFunction): Promise<void> {
         const languages = await languagesRepository.findAll();
         res.render('languages/languages_list', { languages });
     }

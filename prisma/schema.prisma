@@ -33,10 +33,15 @@ model Language {
   snippets  Snippet[]
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model User {
   id        Int       @id @default(autoincrement())
   name      String    @unique
   hashedPassword String
   snippets  Snippet[]
-
+  role      Role      @default(USER)
 }

@@ -3,11 +3,13 @@ import { userRepository } from "./user.repository";
 import bcrypt from 'bcrypt';
 
 class AuthController {
-    public async loginForm(req: Request, res: Response, next: NextFunction): Promise<any> {
+
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    public async loginForm(req: Request, res: Response, next: NextFunction): Promise<void> {
         res.render('auth/login');
     }
 
-    public async login(req: Request, res: Response, next: NextFunction): Promise<any> {
+    public async login(req: Request, res: Response, next: NextFunction): Promise<void> {
         const name = req.body.name;
         const password = req.body.password;
         const user = await userRepository.isExistingUser(name);
@@ -27,7 +29,7 @@ class AuthController {
         }
     }
 
-    public async logout(req: Request, res: Response, next: NextFunction): Promise<any> {
+    public async logout(req: Request, res: Response, next: NextFunction): Promise<void> {
         req.session.destroy((err) => {
             res.redirect('/');
         });

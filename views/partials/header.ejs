@@ -24,6 +24,11 @@
             <li class="nav-item">
               <a class="nav-link" href="/languages">Langages</a>
             </li>
+            <% if (user?.role === 'ADMIN') { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin">Administration</a>
+              </li>
+              <% } %>
           </ul>
 
           <div class="login-infos nav-item">

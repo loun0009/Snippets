@@ -6,6 +6,7 @@ Année universitaire 2024-2025 - INFS5-TD3
 ## Auteurs
 
 LOUNGOUNDJI Enzo (loun0009)
+
 PERROT Clément (perr0112)
 
 ## Configuration
@@ -25,6 +26,15 @@ POSTGRES_USER=mr513
 POSTGRES_PASSWORD=password
 DATABASE_URL="postgresql://mr513:password@127.0.0.1:5432/snippets"
 ```
+Lancer les conteneurs docker 
+```
+docker compose up -d
+```
+
+Lancer le serveur local
+```
+npm run watch
+```
 
 Réinitialiser la base de données
 ```
@@ -36,3 +46,6 @@ Visualiser la base de données
 ```
 npx prisma studio
 ```
+Serveur local démarré : http://localhost:7000
+
+Prisma Studio is up on http://localhost:5555

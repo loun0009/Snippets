@@ -49,3 +49,9 @@ npx prisma studio
 Serveur local démarré : http://localhost:7000
 
 Prisma Studio is up on http://localhost:5555
+
+User test pour créer des snippets
+```
+login : loun0009
+password: azerty01
+```
